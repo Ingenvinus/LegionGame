@@ -10,7 +10,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LegionGame">
         <activity
-            android:name=".MainActivity"
+            android:name=".HighscoreActivity"
+            android:exported="true" />
+        <activity
+            android:name=".OptionsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LevelActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="true"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".GameActivity"
+            android:exported="true" />
+        <activity
+            android:name=".IntroScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:label="@string/title_activity_intro_screen"
+            android:theme="@style/Theme.LegionGame.Fullscreen" />
+        <activity
+            android:name=".MainMenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
