@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="Click anywhere to start game"
+        android:text="@string/click_anywhere_to_start_game"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold" />
