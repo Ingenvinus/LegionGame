@@ -1,16 +1,16 @@
 package com.example.legiongame;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.legiongame.databinding.ActivityIntroScreenBinding;
 
@@ -118,18 +118,14 @@ public class IntroScreenActivity extends AppCompatActivity {
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(IntroScreenActivity.this, LoginActivity.class);
-
-                startActivity(intent);
-
+                toggle();
             }
         });
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-
+        binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override
@@ -140,6 +136,14 @@ public class IntroScreenActivity extends AppCompatActivity {
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
+    }
+
+    private void toggle() {
+        if (mVisible) {
+            hide();
+        } else {
+            show();
+        }
     }
 
     private void hide() {
