@@ -2,8 +2,10 @@ package com.example.legiongame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,5 +25,14 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+
     }
+
+    public void showPopup(View view) {
+        PopupMenu popup = new PopupMenu(this, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.actions, popup.getMenu());
+        popup.show();
+    }
+
 }
