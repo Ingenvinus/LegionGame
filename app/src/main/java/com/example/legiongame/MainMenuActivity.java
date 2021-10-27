@@ -47,5 +47,10 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void profileActivity(MenuItem item){
+        Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
 
 }

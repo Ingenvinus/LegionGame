@@ -7,5 +7,9 @@
         android:id="@+id/Exit"
         android:onClick="exitGame"
         android:title="Exit" />
+    <item
+        android:id="@+id/Profile"
+        android:onClick="profileActivity"
+        android:title="Profile" />
 
 </menu>
