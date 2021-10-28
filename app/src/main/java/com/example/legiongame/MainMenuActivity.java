@@ -7,15 +7,32 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainMenuActivity extends AppCompatActivity {
+
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseAuth = FirebaseAuth.getInstance();
+        checkUser();
+
+        final Button buttonLogout = findViewById(R.id.buttonLogout);
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth.signOut();
+                checkUser();
+            }
+        });
 
         final Button buttonStart = findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +61,21 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
     }
+
+    private void checkUser() {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser == null){
+            // user not logged in
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
+        else {
+            // user logged in
+            String email = firebaseUser.getEmail();
+            Toast.makeText(getApplicationContext(), "Signed in as:\n"+email, Toast.LENGTH_SHORT).show();
+        }
+    }
+    
 
     public void showPopup(View view) {
         PopupMenu popup = new PopupMenu(this, view);
