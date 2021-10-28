@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "620620126626",
+    "project_id": "legion-31bbb",
+    "storage_bucket": "legion-31bbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620620126626:android:c877c4d958f1341a513afb",
+        "android_client_info": {
+          "package_name": "com.example.legiongame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620620126626-og4qa89r9gro2aeai5b4j09jcnpah9ca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZF9kjmfAi0HuEs8qJRWUJju0ZFzBjpQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620620126626-og4qa89r9gro2aeai5b4j09jcnpah9ca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

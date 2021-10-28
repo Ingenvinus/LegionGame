@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         checkUser();
 
         // Google signIn button
-        SignInButton googleButton = findViewById(R.id.sign_in_button);//.setOnClickListener();
+        SignInButton googleButton = findViewById(R.id.sign_in_button);
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode() == Activity.RESULT_OK){
+            if (!(result.getResultCode() == Activity.RESULT_CANCELED)){
                 Intent intent = result.getData();
                 Log.d(TAG, "OnActivityResult: Google Singin intent result");
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(intent);
@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG, "OnActivityResult:"+e.getMessage());
                 }
             }
+
         }
 
         private void firebaseAuthWithGoogleAccount(GoogleSignInAccount account) {
