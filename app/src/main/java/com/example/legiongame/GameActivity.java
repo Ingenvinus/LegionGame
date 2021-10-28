@@ -1,16 +1,30 @@
 package com.example.legiongame;
 
-import android.os.Bundle;
+import com.badlogic.gdx.Game;
 
-import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+public class GameActivity extends Game {
 
-public class GameActivity extends AndroidApplication {
+    LegionGame game;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-        initialize(new LegionGame(), config);
+    public void create() {
+        game = new LegionGame();
+        setScreen(game);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        game.dispose();
+    }
+
+    @Override
+    public void render() {
+        super.render();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        game.resize(width, height);
     }
 }
