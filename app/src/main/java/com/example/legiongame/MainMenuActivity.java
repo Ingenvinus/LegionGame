@@ -33,6 +33,16 @@ public class MainMenuActivity extends AppCompatActivity {
                 showPopup(view);
             }
         });
+
+        final Button buttonHighscore = findViewById(R.id.buttonHighscore);
+        buttonHighscore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, HighscoreActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void showPopup(View view) {
