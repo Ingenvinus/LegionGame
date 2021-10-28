@@ -138,21 +138,12 @@ public class LoginActivity extends AppCompatActivity {
                     });
         }
     });
-    
+
     @Override
     protected void onStart() {
         super.onStart();
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
-
-    }
-
-    public void updateUI(GoogleSignInAccount account){
-        if(account != null) {
-            Intent switchActivityIntent = new Intent(this, MainMenuActivity.class);
-            startActivity(switchActivityIntent);
         }
-    }
+
 }
