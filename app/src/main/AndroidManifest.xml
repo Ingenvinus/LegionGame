@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Legion"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LegionGame">
@@ -35,20 +35,19 @@
             android:name=".GameActivity"
             android:exported="true" />
         <activity
+            android:name=".MainMenuActivity"
+            android:exported="true"/>
+        <activity
             android:name=".IntroScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/title_activity_intro_screen"
-            android:theme="@style/Theme.LegionGame.Fullscreen" />
-        <activity
-            android:name=".MainMenuActivity"
-            android:exported="true">
+            android:theme="@style/Theme.LegionGame.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
