@@ -52,16 +52,20 @@ public class LegionGame implements Screen {
     public void render(float deltaTime) {
         batch.begin();
 
+
+        player.draw(batch);
+
+        batch.end();
+    }
+
+    public void move(){
         //scrolling background
         backgroundOffset++;
         if (backgroundOffset % WORLD_HEIGHT == 0){
             backgroundOffset = 0;
         }
 
-        batch.draw(background, 0,0,WORLD_WIDTH, WORLD_HEIGHT);
-        player.draw(batch);
-
-        batch.end();
+        batch.draw(background, 0,0,-WORLD_WIDTH+WORLD_HEIGHT, WORLD_HEIGHT);
     }
 
     @Override

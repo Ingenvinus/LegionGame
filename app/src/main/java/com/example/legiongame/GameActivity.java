@@ -2,6 +2,8 @@ package com.example.legiongame;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 public class GameActivity extends AndroidApplication {
 
     GameView view;
+    LegionGame game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,8 @@ public class GameActivity extends AndroidApplication {
 
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         initialize(view, config);
+
+        ConstraintLayout layout = findViewById(R.id.playground);
 
     }
 
