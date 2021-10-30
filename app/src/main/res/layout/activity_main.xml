@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenuActivity">
+    tools:context=".MainMenuActivity"
+    android:background="@drawable/gradient_list"
+    android:id="@+id/mainLayout">
+
 
     <Button
         android:id="@+id/buttonSettings"
         android:layout_width="95dp"
         android:layout_height="81dp"
+        android:layout_marginTop="620dp"
+        android:layout_marginEnd="148dp"
         android:background="#00FFFFFF"
-        android:text="Button"
         app:icon="@drawable/settingsicon"
         app:iconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,38 +24,56 @@
 
     <Button
         android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:layout_width="210dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="400dp"
+        android:backgroundTint="@color/white"
         android:text="Play game"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonHighscore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:layout_width="210dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="356dp"
+        android:backgroundTint="@color/white"
         android:text="Highscore"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonStart"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/buttonLogout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:layout_width="210dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="276dp"
+        android:backgroundTint="@color/white"
         android:text="Logout"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonHighscore"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/buttonHighscore"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStart"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonHighscore"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="213dp"
+        android:layout_height="229dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/legion_logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
