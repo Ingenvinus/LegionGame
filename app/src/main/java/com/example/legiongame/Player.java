@@ -1,7 +1,10 @@
 package com.example.legiongame;
 
+import android.util.Log;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Player {
 
@@ -12,6 +15,7 @@ public class Player {
     //position & dimension
     float xCentre, yCentre;
     float width, height;
+    Rectangle boundingBoxPlayer;
 
     //graphics
     Texture playerTexture;
@@ -26,11 +30,26 @@ public class Player {
         this.yCentre = yCentre;
         this.width = width;
         this.height = height;
+        this.boundingBoxPlayer = new Rectangle(xCentre, yCentre, width, height);
         this.playerTexture = playerTexture;
     }
 
     public void draw(Batch batch){
         batch.draw(playerTexture, xCentre, yCentre,width,height);
+    }
+
+    public boolean intersects(Rectangle otherRectangle){
+        return boundingBoxPlayer.overlaps(otherRectangle);
+    }
+
+    public void translate(float xChange, float yChange){
+        boundingBoxPlayer.setPosition((boundingBoxPlayer.x + xChange),(boundingBoxPlayer.getY() + yChange));
+        Log.d("x", "x"+xChange);
+        Log.d("y", "y"+yChange);
+    }
+
+    public void update(float deltaTime){
+        boundingBoxPlayer.set(xCentre, yCentre, width, height);
     }
 
 }

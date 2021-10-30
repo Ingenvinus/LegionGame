@@ -2,6 +2,7 @@ package com.example.legiongame;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Random;
 
@@ -16,6 +17,7 @@ public class Obstacles {
     float xCentre;
     float yCentre;
     float width, height;
+    Rectangle boundingBoxObstacle;
 
     //Graphics
     Texture obstacleTexture;
@@ -26,6 +28,7 @@ public class Obstacles {
         this.yCentre = yCentre;
         this.width = width;
         this.height = height;
+        this.boundingBoxObstacle = new Rectangle(xCentre,yCentre,width,height);
         this.obstacleTexture = obstacleTexture;
         this.speed = speed;
         this.timeBetweenObstacle = timeBetweenObstacle;
@@ -94,6 +97,11 @@ public class Obstacles {
         obstacles[2] = new Obstacles(randomLocation, 128, randomSize, randomSize, obstacleTexture, speed, timeBetweenObstacle);
 
         return obstacles;
+    }
+
+    public Rectangle getBoundingBox(){
+
+        return new Rectangle(xCentre, yCentre, width, height);
     }
 
 
