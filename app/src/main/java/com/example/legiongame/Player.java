@@ -35,7 +35,7 @@ public class Player {
     }
 
     public void draw(Batch batch){
-        batch.draw(playerTexture, xCentre, yCentre,width,height);
+        batch.draw(playerTexture, xCentre, yCentre, width , height);
     }
 
     public boolean intersects(Rectangle otherRectangle){
@@ -44,12 +44,13 @@ public class Player {
 
     public void translate(float xChange, float yChange){
         boundingBoxPlayer.setPosition((boundingBoxPlayer.x + xChange),(boundingBoxPlayer.getY() + yChange));
+        this.xCentre += xChange;
+        this.yCentre += yChange;
+
         Log.d("x", "x"+xChange);
         Log.d("y", "y"+yChange);
     }
-
     public void update(float deltaTime){
         boundingBoxPlayer.set(xCentre, yCentre, width, height);
     }
-
 }

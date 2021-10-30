@@ -122,8 +122,8 @@ public class LegionGame implements Screen {
         float leftLimit, rightLimit, upLimit, downLimit;
         leftLimit = -player.boundingBoxPlayer.x;
         downLimit = -player.boundingBoxPlayer.y;
-        rightLimit = WORLD_WIDTH-player.boundingBoxPlayer.x -player.boundingBoxPlayer.width;
-        upLimit = WORLD_HEIGHT/2-player.boundingBoxPlayer.y -player.boundingBoxPlayer.height;
+        rightLimit = WORLD_WIDTH - player.boundingBoxPlayer.x - player.boundingBoxPlayer.width;
+        upLimit = WORLD_HEIGHT / 2 - player.boundingBoxPlayer.y - player.boundingBoxPlayer.height;
 
         if (Gdx.input.isTouched()){
             float xTouchPixels = Gdx.input.getX();
@@ -133,7 +133,7 @@ public class LegionGame implements Screen {
             touchPoint = viewport.unproject(touchPoint);
 
             Vector2 playerCentre = new Vector2( player.boundingBoxPlayer.x + player.boundingBoxPlayer.width,
-                                                player.boundingBoxPlayer.y +player.boundingBoxPlayer.height);
+                                                player.boundingBoxPlayer.y + player.boundingBoxPlayer.height);
             float touchDistance = touchPoint.dst(playerCentre);
             if(touchDistance > TOUCH_MOVE_THRESHOLD){
                 float xTouchDifference = touchPoint.x- playerCentre.x;
