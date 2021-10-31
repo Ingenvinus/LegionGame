@@ -16,11 +16,27 @@
         android:layout_marginStart="24dp"
         android:layout_marginBottom="16dp"
         android:background="#00FFFFFF"
+        android:text="profile"
         app:icon="@drawable/outline_account_circle_white_24dp"
         app:iconPadding="10dp"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/muteButton"
+        android:layout_width="65dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="7dp"
+        android:background="#00FFFFFF"
+        android:text="mute"
+        app:icon="@drawable/outline_volume_up_white_24dp"
+        app:iconPadding="10dp"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
     <Button
@@ -31,6 +47,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="16dp"
         android:background="#00FFFFFF"
+        android:text="home"
         app:icon="@drawable/outline_home_white_24dp"
         app:iconPadding="10dp"
         app:iconTint="@color/white"
@@ -46,6 +63,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:background="#00FFFFFF"
+        android:text="about"
         app:icon="@drawable/outline_info_white_24dp"
         app:iconPadding="10dp"
         app:iconTint="@color/white"

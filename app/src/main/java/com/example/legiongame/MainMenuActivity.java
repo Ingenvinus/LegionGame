@@ -14,20 +14,29 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.legiongame.Database.DB;
+import com.example.legiongame.Models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    private boolean mute = false;
     private FirebaseAuth firebaseAuth;
     private MediaPlayer mediaPlayer;
     private BottomNavigationView bottomNavigationView;
+    public User gameUser;
+    public DB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DB.createDatabase(MainMenuActivity.this);
+        db = DB.getDatabase();
+        //set mute button icon
 
 
         // background music
@@ -47,6 +56,11 @@ public class MainMenuActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         checkUser();
 
+        //create user
+        gameUser = new User(firebaseAuth.getCurrentUser().getDisplayName(), 0);
+
+        //db.addNewUser(gameUser.getUsername(),gameUser.getHighscore());
+
         // Buttons
 
         final Button buttonLogout = findViewById(R.id.buttonLogout);
@@ -55,6 +69,26 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 firebaseAuth.signOut();
                 checkUser();
+            }
+        });
+
+        final Button muteButton = findViewById(R.id.muteButton);
+        muteButton.setBackgroundResource(R.drawable.outline_volume_up_white_24dp);
+        muteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!mute){
+                    muteButton.setBackgroundResource(R.drawable.outline_volume_off_white_24dp);
+
+                    mediaPlayer.stop();
+                    mute = true;
+                    // show muted icon
+                } else {
+                    muteButton.setBackgroundResource(R.drawable.outline_volume_up_white_24dp);
+                    mediaPlayer.start();
+                    mute = false;
+                    // show normal icon
+                }
             }
         });
 
@@ -134,7 +168,6 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         mediaPlayer.stop();
-        mediaPlayer.release();
     }
 
 

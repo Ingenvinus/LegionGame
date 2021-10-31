@@ -1,5 +1,6 @@
 package com.example.legiongame;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,6 +14,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.example.legiongame.Database.DB;
+import com.example.legiongame.Models.User;
+import com.example.legiongame.MainMenuActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -20,6 +25,7 @@ import java.util.Random;
 
 public class LegionGame implements Screen {
 
+    private FirebaseAuth firebaseAuth;
 
     //screen
     private Camera camera;
@@ -50,8 +56,14 @@ public class LegionGame implements Screen {
 
     boolean gameOver = false;
 
+    private DB db;
+
+
 
     LegionGame() {
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = DB.getDatabase();
         camera = new OrthographicCamera();
         viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
 
@@ -147,10 +159,15 @@ public class LegionGame implements Screen {
                 player.lives -= 1;
                 if(player.lives == 0){
                     Log.d("HIGHSCORE", Float.toString(player.score));
+                    updateDB(player.score);
                     Gdx.app.exit();
                 }
             }
         }
+    }
+
+    private void updateDB(float score) {
+        db.addNewUser(firebaseAuth.getCurrentUser().getDisplayName(), score);
     }
 
     public void detectInput(float deltaTime){

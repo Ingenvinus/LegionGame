@@ -1,15 +1,18 @@
 package com.example.legiongame;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.example.legiongame.Database.DB;
 
 public class GameActivity extends AndroidApplication {
 
     GameView view;
     LegionGame game;
+    DB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
