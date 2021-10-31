@@ -2,6 +2,7 @@ package com.example.legiongame;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,11 +20,18 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainMenuActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // background music
+        mediaPlayer = MediaPlayer.create(MainMenuActivity.this,R.raw.menu_song);
+        mediaPlayer.setLooping(true);
+        //mediaPlayer.setVolume(0.5f, 0.5f);
+        mediaPlayer.start();
 
         // background animation
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
@@ -51,6 +59,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainMenuActivity.this, GameActivity.class);
                 startActivity(intent);
+                mediaPlayer.stop();
             }
         });
 
@@ -108,6 +117,23 @@ public class MainMenuActivity extends AppCompatActivity {
     public void aboutActivity(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, AboutActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mediaPlayer.start();
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        mediaPlayer.pause();
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 
 
