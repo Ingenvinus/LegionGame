@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -21,11 +22,13 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private MediaPlayer mediaPlayer;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // background music
         mediaPlayer = MediaPlayer.create(MainMenuActivity.this,R.raw.menu_song);
@@ -43,6 +46,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         checkUser();
+
+        // Buttons
 
         final Button buttonLogout = findViewById(R.id.buttonLogout);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
@@ -63,11 +68,30 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
-        final Button buttonSettings = findViewById(R.id.buttonSettings);
-        buttonSettings.setOnClickListener(new View.OnClickListener() {
+        final Button mProfileButton = findViewById(R.id.profileButton);
+        mProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopup(view);
+                Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final Button mAboutButton = findViewById(R.id.aboutButton);
+        mAboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, AboutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final Button mHomeButton = findViewById(R.id.homeButton);
+        mHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainMenuActivity.this, IntroScreenActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -94,29 +118,6 @@ public class MainMenuActivity extends AppCompatActivity {
             String email = firebaseUser.getEmail();
             Toast.makeText(getApplicationContext(), "Signed in as:\n"+email, Toast.LENGTH_SHORT).show();
         }
-    }
-    
-
-    public void showPopup(View view) {
-        PopupMenu popup = new PopupMenu(this, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.actions, popup.getMenu());
-        popup.show();
-    }
-
-    public void exitGame(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, IntroScreenActivity.class);
-        startActivity(intent);
-    }
-
-    public void profileActivity(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
-        startActivity(intent);
-    }
-
-    public void aboutActivity(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, AboutActivity.class);
-        startActivity(intent);
     }
 
     @Override
