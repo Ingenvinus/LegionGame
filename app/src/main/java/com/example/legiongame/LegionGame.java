@@ -1,7 +1,11 @@
 package com.example.legiongame;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,8 +32,9 @@ public class LegionGame implements Screen {
     private Texture obstacleTexture;
 
     //timings
-    private int backgroundOffset = 0;
+    private int backgroundOffset;
     private int meteoriteOffset = 0;
+    private float timeState = 0f;
 
     //world parameters
     private final int WORLD_WIDTH = 72;
@@ -40,6 +45,9 @@ public class LegionGame implements Screen {
     private Obstacles obstacle;
     private LinkedList<Obstacles> obstacleList;
 
+    //music
+    private static Music musicBackground;
+
     boolean gameOver = false;
 
 
@@ -49,11 +57,18 @@ public class LegionGame implements Screen {
 
         background = new Texture("background.png");
         backgroundOffset = 0;
-        playerTexture = new Texture("player.jpg");
+        playerTexture = new Texture("player.png");
         obstacleTexture = new Texture("meteorite.png");
 
+        musicBackground = Gdx.audio.newMusic(Gdx.files.internal("game_song.mp3"));
+        musicBackground.setLooping(true);
+        musicBackground.setVolume(0.5f);
+
+        musicBackground.play();
+
+
         //setup players or game objects
-        player = new Player(30,1,WORLD_WIDTH/2-4,WORLD_HEIGHT/4,10,10, playerTexture);
+        player = new Player(50,1, 3, 0, WORLD_WIDTH/2-4,WORLD_HEIGHT/4,10,10, playerTexture);
 
         obstacle = new Obstacles(0, WORLD_HEIGHT, 1, 1, obstacleTexture, 100, 1);
 
@@ -71,11 +86,13 @@ public class LegionGame implements Screen {
     public void render(float deltaTime) {
         batch.begin();
 
+        batch.draw(background, 0,0, WORLD_WIDTH, WORLD_HEIGHT);
+
+        move();
+
         detectInput(deltaTime);
 
         player.update(deltaTime);
-
-        batch.draw(background, 0,-backgroundOffset, WORLD_WIDTH, WORLD_HEIGHT);
 
         player.draw(batch);
 
@@ -87,7 +104,19 @@ public class LegionGame implements Screen {
 
         batch.end();
 
+        timeState += Gdx.graphics.getDeltaTime();
+        if(timeState>=1f){
+            timeState=0f;
+            countHighscore();
+        }
+
+
     }
+
+    private void countHighscore() {
+        player.score++;
+    }
+
 
     public void renderObstacles(float deltaTime){
         if (obstacle.canFallMeteorite()){
@@ -113,7 +142,13 @@ public class LegionGame implements Screen {
         while(iterator.hasNext()){
             Obstacles obstacles = iterator.next();
             if(player.intersects(obstacles.getBoundingBox())){
-
+                iterator.remove();
+                Log.d("hit", "hit");
+                player.lives -= 1;
+                if(player.lives == 0){
+                    Log.d("score", Float.toString(player.score));
+                    Gdx.app.exit();
+                }
             }
         }
     }
@@ -157,13 +192,15 @@ public class LegionGame implements Screen {
 
     public void move(){
         //scrolling background
-        backgroundOffset++;
+        backgroundOffset += 2;
         if (backgroundOffset % WORLD_HEIGHT == 0){
             backgroundOffset = 0;
         }
 
 
-        batch.draw(background, 0,0,-backgroundOffset, WORLD_HEIGHT);
+        batch.draw(background, 0,-backgroundOffset, WORLD_WIDTH, WORLD_HEIGHT);
+        batch.draw(background, 0,-backgroundOffset+WORLD_HEIGHT, WORLD_WIDTH, WORLD_HEIGHT);
+
     }
 
     public void obstacle(){
@@ -222,6 +259,6 @@ public class LegionGame implements Screen {
 
     @Override
     public void dispose() {
-
+        musicBackground.dispose();
     }
 }

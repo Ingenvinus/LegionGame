@@ -11,6 +11,8 @@ public class Player {
     //player characteristics
     float movementSpeed;
     int direction;
+    int lives;
+    float score;
 
     //position & dimension
     float xCentre, yCentre;
@@ -20,12 +22,14 @@ public class Player {
     //graphics
     Texture playerTexture;
 
-    public Player(float movementSpeed, int direction,
+    public Player(float movementSpeed, int direction, int lives, float score,
                   float xCentre, float yCentre,
                   float width, float height,
                   Texture playerTexture) {
         this.movementSpeed = movementSpeed;
         this.direction = direction;
+        this.lives = lives;
+        this.score = score;
         this.xCentre = xCentre;
         this.yCentre = yCentre;
         this.width = width;

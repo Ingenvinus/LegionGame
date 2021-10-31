@@ -25,7 +25,7 @@ public class GameActivity extends AndroidApplication {
 
     public static class GameView extends Game {
 
-        LegionGame game;
+        public LegionGame game;
 
         @Override
         public void create() {

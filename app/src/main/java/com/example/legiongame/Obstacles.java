@@ -75,7 +75,7 @@ public class Obstacles {
         Random r = new Random();
 
         float minxCentre = 1;
-        float speed = 30;
+        float speed = 70;
         float timeBetweenObstacle = 2;
 
         float minSize = 10;
