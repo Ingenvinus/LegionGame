@@ -2,8 +2,11 @@ package com.example.legiongame.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class DB extends SQLiteOpenHelper{
 
@@ -48,5 +51,21 @@ public class DB extends SQLiteOpenHelper{
             database = null;
         }
         return database;
+    }
+
+    public ArrayList<Float> getHighscores(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT Highscore FROM USERS ORDER BY Highscore DESC";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        final ArrayList<Float> highscores = new ArrayList<>();
+        final int nameIndex = cursor.getColumnIndex("Highscore");
+        while (!cursor.isAfterLast()){
+            highscores.add(cursor.getFloat(nameIndex));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return highscores;
     }
 }
