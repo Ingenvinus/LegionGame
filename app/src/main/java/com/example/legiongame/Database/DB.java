@@ -70,4 +70,21 @@ public class DB extends SQLiteOpenHelper{
         cursor.close();
         return highscores;
     }
+
+    public ArrayList<String> getUsernames(){
+        //retrieving Usernames from database and ordering them in a descending manner
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT Username FROM USERS ORDER BY Highscore DESC";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        final ArrayList<String> usernames = new ArrayList<>();
+        final int nameIndex = cursor.getColumnIndex("Username");
+        while (!cursor.isAfterLast()){
+            usernames.add(cursor.getString(nameIndex));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return usernames;
+    }
 }
