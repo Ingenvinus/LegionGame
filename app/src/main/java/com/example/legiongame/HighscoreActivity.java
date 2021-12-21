@@ -1,14 +1,13 @@
 package com.example.legiongame;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.legiongame.Database.DB;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 public class HighscoreActivity extends AppCompatActivity {
 
     DB db;
-    ArrayList<Float> highscores;
+    ArrayList<String> highscores;
     HighscoreAdapter MyRecyclerViewAdapter;
 
     @Override
@@ -26,7 +25,7 @@ public class HighscoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_highscore);
         // initializing database
         db = DB.getDatabase();
-        highscores = db.getHighscores();
+        highscores = db.getUsernames();
 
         // setting the recyclerView with the contents of the highscore database
         RecyclerView recyclerView = findViewById(R.id.myRecyclerView);

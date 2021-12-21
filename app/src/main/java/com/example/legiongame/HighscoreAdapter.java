@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.ViewHolder> {
 
-    private ArrayList<Float> localDataSet;
+    private ArrayList<String> localDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
@@ -28,7 +28,7 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.View
         }
     }
 
-    public HighscoreAdapter(ArrayList<Float> dataSet) {
+    public HighscoreAdapter(ArrayList<String> dataSet) {
         localDataSet = dataSet;
     }
 

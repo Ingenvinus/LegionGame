@@ -74,14 +74,22 @@ public class DB extends SQLiteOpenHelper{
     public ArrayList<String> getUsernames(){
         //retrieving Usernames from database and ordering them in a descending manner
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT Username FROM USERS ORDER BY Highscore DESC";
+        String query = "SELECT Username, Highscore FROM USERS ORDER BY Highscore DESC";
+
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
 
         final ArrayList<String> usernames = new ArrayList<>();
         final int nameIndex = cursor.getColumnIndex("Username");
+        final int nameIndexHS = cursor.getColumnIndex("Highscore");
         while (!cursor.isAfterLast()){
-            usernames.add(cursor.getString(nameIndex));
+
+            String Username = cursor.getString(nameIndex);
+            String Highscore = cursor.getString(nameIndexHS);
+
+
+            String data = "  " + Username + " : " + Highscore;
+            usernames.add(data);
             cursor.moveToNext();
         }
         cursor.close();
