@@ -137,7 +137,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void checkUser() {

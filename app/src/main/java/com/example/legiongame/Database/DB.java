@@ -20,6 +20,7 @@ public class DB extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // create users table with userID, username and a highscore
         db.execSQL("CREATE TABLE USERS ("+
                 "userID INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "Username TEXT,"+
@@ -54,6 +55,7 @@ public class DB extends SQLiteOpenHelper{
     }
 
     public ArrayList<Float> getHighscores(){
+        //retrieving highscores from database and ordering them in a descending manner
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT Highscore FROM USERS ORDER BY Highscore DESC";
         Cursor cursor = db.rawQuery(query, null);

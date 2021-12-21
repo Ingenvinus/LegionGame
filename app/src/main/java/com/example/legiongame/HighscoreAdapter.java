@@ -13,10 +13,6 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.View
 
     private ArrayList<Float> localDataSet;
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
 
@@ -32,12 +28,6 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreAdapter.View
         }
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
     public HighscoreAdapter(ArrayList<Float> dataSet) {
         localDataSet = dataSet;
     }
