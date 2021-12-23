@@ -27,7 +27,7 @@ public class HighscoreActivity extends AppCompatActivity {
         db = DB.getDatabase();
         highscores = db.getUsernames();
 
-        // setting the recyclerView with the contents of the highscore database
+        // setting the recyclerView with the contents from the highscore database
         RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MyRecyclerViewAdapter = new HighscoreAdapter(highscores);
