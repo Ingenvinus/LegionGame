@@ -8,6 +8,8 @@
         <entry key="..\:/Legion/app/src/main/res/drawable/background_3.xml" value="0.2911458333333333" />
         <entry key="..\:/Legion/app/src/main/res/drawable/gradient_list.xml" value="0.16041666666666668" />
         <entry key="..\:/Legion/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17135416666666667" />
+        <entry key="..\:/Legion/app/src/main/res/layout/activity_about.xml" value="0.505358615004122" />
+        <entry key="..\:/Legion/app/src/main/res/layout/activity_game.xml" value="0.30480072463768115" />
         <entry key="..\:/Legion/app/src/main/res/layout/activity_highscore.xml" value="0.264" />
         <entry key="..\:/Legion/app/src/main/res/layout/activity_highscore_item.xml" value="0.4" />
         <entry key="..\:/Legion/app/src/main/res/layout/activity_intro_screen.xml" value="0.2" />
