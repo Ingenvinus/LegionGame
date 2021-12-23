@@ -39,7 +39,6 @@ public class MainMenuActivity extends AppCompatActivity {
         // background music
         mediaPlayer = MediaPlayer.create(MainMenuActivity.this,R.raw.menu_song);
         mediaPlayer.setLooping(true);
-        //mediaPlayer.setVolume(0.5f, 0.5f);
         mediaPlayer.start();
 
         // background animation
@@ -68,18 +67,20 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         final Button muteButton = findViewById(R.id.muteButton);
-        muteButton.setBackgroundResource(R.drawable.outline_volume_up_white_24dp);
+        //muteButton.setBackgroundResource(R.drawable.outline_volume_up_white_24dp);
         muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!mute){
-                    muteButton.setBackgroundResource(R.drawable.outline_volume_off_white_24dp);
-
+                    muteButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.outline_volume_off_white_24dp, 0,0,0);
                     mediaPlayer.stop();
                     mute = true;
                     // show muted icon
                 } else {
-                    muteButton.setBackgroundResource(R.drawable.outline_volume_up_white_24dp);
+                    muteButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.outline_volume_up_white_24dp, 0,0,0);
+                    // background music
+                    mediaPlayer = MediaPlayer.create(MainMenuActivity.this,R.raw.menu_song);
+                    mediaPlayer.setLooping(true);
                     mediaPlayer.start();
                     mute = false;
                     // show normal icon
