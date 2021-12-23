@@ -1,7 +1,5 @@
 package com.example.legiongame;
 
-import android.util.Log;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
@@ -50,9 +48,6 @@ public class Player {
         boundingBoxPlayer.setPosition((boundingBoxPlayer.x + xChange),(boundingBoxPlayer.getY() + yChange));
         this.xCentre += xChange;
         this.yCentre += yChange;
-
-        Log.d("x", "x"+xChange);
-        Log.d("y", "y"+yChange);
     }
     public void update(float deltaTime){
         boundingBoxPlayer.set(xCentre, yCentre, width, height);

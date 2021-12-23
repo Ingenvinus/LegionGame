@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //begin google SignIn
-                Log.d(TAG, "onClick: begin Google SignIn");
                 resultLauncher.launch(new Intent(GoogleSignInClient.getSignInIntent()));
             }
         });
@@ -71,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
     private void checkUser() {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null){
-            Log.d(TAG,"checkUser: User already signed in");
             startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
             finish();
         }
@@ -82,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         public void onActivityResult(ActivityResult result) {
             if (!(result.getResultCode() == Activity.RESULT_CANCELED)){
                 Intent intent = result.getData();
-                Log.d(TAG, "OnActivityResult: Google Singin intent result");
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(intent);
                 try {
                     GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -91,20 +88,17 @@ public class LoginActivity extends AppCompatActivity {
                     firebaseAuthWithGoogleAccount(account);
                 } catch (ApiException e) {
                     // Google SignIn Failed
-                    Log.d(TAG, "OnActivityResult:"+e.getMessage());
                 }
             }
 
         }
 
         private void firebaseAuthWithGoogleAccount(GoogleSignInAccount account) {
-            Log.d(TAG, "firebaseAuthWithGoogleAccount: begin firebase auth with google account");
             AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
             firebaseAuth.signInWithCredential(credential)
                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            Log.d(TAG, "onSuccess: Logging in succesfull");
 
                             // get logged in user
                             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -112,9 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                             String uid = firebaseUser.getUid();
                             String email = firebaseUser.getEmail();
 
-                            // check user
-                            Log.d(TAG, "onSucces: UID"+uid);
-                            Log.d(TAG, "onSucces: Email"+email);
 
                             // check if user is new or already exists
                             if (authResult.getAdditionalUserInfo().isNewUser()){
@@ -134,7 +125,6 @@ public class LoginActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d(TAG, "onFailure: Logging in failed" +e.getMessage());
                         }
                     });
         }

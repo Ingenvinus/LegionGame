@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,8 +55,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //create user
         gameUser = new User(firebaseAuth.getCurrentUser().getDisplayName(), 0);
-
-        //db.addNewUser(gameUser.getUsername(),gameUser.getHighscore());
 
         // Buttons
 

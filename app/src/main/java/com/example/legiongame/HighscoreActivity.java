@@ -33,8 +33,6 @@ public class HighscoreActivity extends AppCompatActivity {
         MyRecyclerViewAdapter = new HighscoreAdapter(highscores);
         recyclerView.setAdapter(MyRecyclerViewAdapter);
 
-        //Log.d("array", highscores.toString());
-
         Button returnButton2 = (Button) findViewById(R.id.buttonReturn2);
         returnButton2.setOnClickListener(new View.OnClickListener() {
             @Override

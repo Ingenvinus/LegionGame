@@ -1,9 +1,5 @@
 package com.example.legiongame;
 
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -15,8 +11,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.example.legiongame.Database.DB;
-import com.example.legiongame.Models.User;
-import com.example.legiongame.MainMenuActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.LinkedList;
@@ -155,10 +149,8 @@ public class LegionGame implements Screen {
             Obstacles obstacles = iterator.next();
             if(player.intersects(obstacles.getBoundingBox())){
                 iterator.remove();
-                Log.d("hit", "hit");
                 player.lives -= 1;
                 if(player.lives == 0){
-                    Log.d("HIGHSCORE", Float.toString(player.score));
                     updateDB(player.score);
                     Gdx.app.exit();
                 }
@@ -243,13 +235,6 @@ public class LegionGame implements Screen {
         obstacle = new Obstacles(randomLocation, WORLD_HEIGHT, randomSize, randomSize, obstacleTexture, speed, timeBetweenObstacle);
 
         obstacle.draw(batch);
-
-        //meteoriteOffset++;
-        //if (meteoriteOffset % WORLD_HEIGHT == 0){
-        //    meteoriteOffset = 0;
-        //}
-
-        //batch.draw(obstacleTexture, 0,-meteoriteOffset, WORLD_WIDTH, WORLD_HEIGHT);
 
     }
 
