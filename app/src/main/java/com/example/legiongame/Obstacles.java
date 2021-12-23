@@ -79,7 +79,7 @@ public class Obstacles {
         float timeBetweenObstacle = 2;
 
         float minSize = 10;
-        float maxSize = 25;
+        float maxSize = 20;
 
         float randomLocation;
         float randomSize;
@@ -100,7 +100,6 @@ public class Obstacles {
     }
 
     public Rectangle getBoundingBox(){
-
         return new Rectangle(xCentre, yCentre, width, height);
     }
 
