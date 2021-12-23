@@ -30,6 +30,7 @@ public class LegionGame implements Screen {
     private Texture background;
     private Texture playerTexture;
     private Texture obstacleTexture;
+    private Texture gameOverTexture;
 
     //timings
     private int backgroundOffset;
@@ -47,6 +48,7 @@ public class LegionGame implements Screen {
 
     //music
     private static Music musicBackground;
+    private static Music deathSound;
 
     boolean gameOver = false;
 
@@ -65,16 +67,18 @@ public class LegionGame implements Screen {
         backgroundOffset = 0;
         playerTexture = new Texture("player.png");
         obstacleTexture = new Texture("meteorite.png");
+        gameOverTexture = new Texture("Gameover.png");
 
         musicBackground = Gdx.audio.newMusic(Gdx.files.internal("game_song.mp3"));
         musicBackground.setLooping(true);
         musicBackground.setVolume(0.5f);
 
+        playDeathSound();
         musicBackground.play();
 
 
         //setup players or game objects
-        player = new Player(50,1, 3, 0, WORLD_WIDTH/2-4,WORLD_HEIGHT/4,10,10, playerTexture);
+        player = new Player(70,1, 3, 0, WORLD_WIDTH/2-4,WORLD_HEIGHT/4,10,10, playerTexture);
 
         obstacle = new Obstacles(0, WORLD_HEIGHT, 1, 1, obstacleTexture, 100, 1);
 
@@ -92,8 +96,6 @@ public class LegionGame implements Screen {
     public void render(float deltaTime) {
         batch.begin();
 
-        batch.draw(background, 0,0, WORLD_WIDTH, WORLD_HEIGHT);
-
         move();
 
         detectInput(deltaTime);
@@ -107,6 +109,21 @@ public class LegionGame implements Screen {
         obstacle.update(deltaTime);
 
         detectCollision();
+
+        if(player.lives == 0){
+            musicBackground.stop();
+            deathSound.play();
+            batch.draw(gameOverTexture,  0,0, WORLD_WIDTH, WORLD_HEIGHT);
+            updateDB(player.score);
+
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Gdx.app.exit();
+        }
 
         batch.end();
 
@@ -150,10 +167,6 @@ public class LegionGame implements Screen {
             if(player.intersects(obstacles.getBoundingBox())){
                 iterator.remove();
                 player.lives -= 1;
-                if(player.lives == 0){
-                    updateDB(player.score);
-                    Gdx.app.exit();
-                }
             }
         }
     }
@@ -242,6 +255,24 @@ public class LegionGame implements Screen {
     public void resize(int width, int height) {
         viewport.update(width, height, true);
         batch.setProjectionMatrix(camera.combined);
+    }
+
+    public void playDeathSound(){
+        Random r = new Random();
+        int number;
+
+
+        int min = 1;
+        int max = 7;
+
+        number = r.nextInt(max - min + 1) + min;
+
+        String choice = String.valueOf(number);
+
+        String deathSong = "Death" + choice + ".mp3";
+
+        deathSound = Gdx.audio.newMusic(Gdx.files.internal(deathSong));
+
     }
 
     @Override
