@@ -111,18 +111,20 @@ public class LegionGame implements Screen {
         detectCollision();
 
         if(player.lives == 0){
-            musicBackground.stop();
-            deathSound.play();
-            batch.draw(gameOverTexture,  0,0, WORLD_WIDTH, WORLD_HEIGHT);
-            updateDB(player.score);
-
             try {
+
+                musicBackground.stop();
+                deathSound.play();
+
+                updateDB(player.score);
+
+                batch.draw(gameOverTexture,  0,0, WORLD_WIDTH, WORLD_HEIGHT);
                 Thread.sleep(2500);
+                Gdx.app.exit();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            Gdx.app.exit();
         }
 
         batch.end();
