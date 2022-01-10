@@ -13,6 +13,28 @@ buildscript {
     }
 }
 
+project(":app") {
+    apply plugin: "com.android.application"
+
+    configurations { natives }
+
+    dependencies {
+        api "com.badlogicgames.gdx:gdx-backend-android:1.10.0"
+        natives "com.badlogicgames.gdx:gdx-platform:1.10.0:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-platform:1.10.0:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-platform:1.10.0:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-platform:1.10.0:natives-x86_64"
+        api "com.badlogicgames.gdx:gdx-box2d:1.10.0"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:1.10.0:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:1.10.0:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:1.10.0:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-box2d-platform:1.10.0:natives-x86_64"
+
+    }
+}
+
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
