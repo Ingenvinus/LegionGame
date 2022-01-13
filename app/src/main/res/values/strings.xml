@@ -21,4 +21,23 @@
     <string name ="facebook_hyperlink">Follow us on <a href="https://www.facebook.com/TheBestCatPage/">Facebook</a></string>
     <string name ="hsleiden_hyperlink">In association with <a href = "https://www.hsleiden.nl/">HSLeiden</a></string>
     <string name ="about">About us</string>
+    <string name="please_sign_in_with_google_to_play">Please sign in with google to play</string>
+    <string name="welcome_login">Welcome</string>
+    <string name="profile">profile</string>
+    <string name="home">home</string>
+    <string name="about_icon">about</string>
+    <string name="play_game_button">Play game</string>
+    <string name="highscore_button">Highscore</string>
+    <string name="logout_button">Logout</string>
+    <string name="logo_main">Logo</string>
+    <string name="profile_profile_page">Profile</string>
+    <string name="username_profile">Username</string>
+    <string name="profile_icon">profile_icon</string>
+    <string name="useremail_profile">Useremail</string>
+    <string name="email_icon">email_icon</string>
+    <string name="highscore_profile">Highscore</string>
+    <string name="highscore_icon">highscore_icon</string>
+    <string name="return_button">return</string>
+    <string name="score_player_field">score player</string>
+    <string name="return_icon">return_icon</string>
 </resources>
